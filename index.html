@@ -62,7 +62,7 @@ reload();
 
 checkValue();
 
-// 1. Функция производит GET запрос. Полученные данные обрабатываются    в формат использованный в коде.
+// 1. Функция производит GET запрос.  Полученные данные обрабатываются    в формат использованный в коде.
 
   function reload() {
 
@@ -70,10 +70,7 @@ checkValue();
       method: "GET"
     }).then((response) => {
 
-        if (response.status == 500) {
-          throw new Error(500);
-        }
-        return response.json()
+       return response.json()
 
     }).then((responseData) => {            
 
@@ -101,7 +98,7 @@ checkValue();
     });
   };
   
-// 2. Функция рендерит данные в HTML
+// 2. Функция, рендерит данные в HTML
 
   function renderComment() {
 
@@ -131,7 +128,7 @@ checkValue();
   }
 
 
-// 3. Создадим функцию которая снимает блокировку кнопки ввода
+// 3. Создадим функцию ,которая снимает блокировку кнопки ввода
 
   function checkValue() {
     if( nameInputElement.value != '' && commentInputElement.value != '') buttonInputElement.disabled = false; 
@@ -186,7 +183,7 @@ checkValue();
     }
 
   }
-// 7. Функция -имитация задержки сервера
+// 7. Функция -имитация  задержки сервера
 
     function delay(interval = 300) {
 
@@ -211,6 +208,11 @@ checkValue();
               buttonInputElement.disabled = false;
               break;
           case 'Failed to fetch': 
+              alert('Отсутствует интернет-соединение. Проверьте компьютер');
+              formElement.classList.remove('add-form-load');          
+              loadElement.classList.remove('loading-on');
+              buttonInputElement.disabled = false;
+              break;
           case '500': 
               console.log('Сервер сломался, попробуй позже');
               postAndGetComments();                               // Если закомментировать эту строку и раскомментировать три нижние
